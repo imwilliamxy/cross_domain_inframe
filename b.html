@@ -9,17 +9,20 @@
         window.onload = function() {
             var isSet = false
             var inteval = setInterval(function() {
-                var search = location.search.replace('?', '')
+                var search = location.search.replace('?', '');
                 if (isSet) {
-                    clearInterval(inteval)
-                    return  
+                    clearInterval(inteval);
+                    return;
                 }
                 if (search) {
-                    var height = search.split('=')[1]
-                    var doc = parent.parent.document
-                    var ifr = doc.getElementById('ifr')
-                    ifr.style.height = height + 'px'
-                    isSet = true
+                    var height = search.split('=')[1];
+                    if (height.includes("&")){
+                      height = height.split("&")[0];
+                    } 
+                    var doc = parent.parent.document;
+                    var ifr = doc.getElementById('ifr');
+                    ifr.style.height = height + 'px';
+                    isSet = true;
                 }
             }, 500)
         }
